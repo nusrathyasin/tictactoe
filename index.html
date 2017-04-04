@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+    <head>
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+              <!-- Library of jQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+              <!--Font style-->
+      <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+              <!-- Title -->
+	    <title>Tic Tac Toe</title>
+<style>
+body{
+	 background:url("http://arunnath.com/i/2017/03/light-abstract-wallpaper-android.jpg");
+	 background-repeat:no-repeat;
+	 color:white;
+	 font-family: 'Kaushan Script', cursive;
+}
+.title{
+	margin-top:40px;
+	text-shadow:2px 2px 4px black;
+}
+input[type="button"]{
+	height:35px;
+	width:40px;
+}
+#message{
+	border:1px solid white;
+	padding:15px;
+	width:430px;
+	box-shadow:2px 2px 4px black;
+}
+table{
+	cursor:pointer;
+	font-weight:bold;
+	font-size:20px;
+}
+@media screen and (max-width: 470px) {
+#message{
+	width:auto;
+}
+#choose{
+	font-size:20px;
+}
+input[type="button"]{
+	height:30px;
+	width:35px;
+}
+}
+</style>
+</head>
+<body>
+   <div class="title">
+	<center>
+	<!--Title of the project-->
+		<h1>TIC TAC TOE</h1>
+	<!--Option -->
+		<h2 id="choose">Choose your favour -
+		<input type="button" value="X" placeholder="X" onclick="start(this)">
+		<input type="button" value="O" placeholder="O" onclick="start(this)"></h2>
+	<!--Commentary-->
+		<h3 id="message">Message:<span id="msg">Choose your favour 'X' or 'O'</span></h3>
+	</center>
+   </div>
+   <!--3*3 table-->
+   <table border="1"  cellspacing="3" cellpadding="35" align="center" >
+	<tr>
+		<td id="box1" id="box" onclick='game(this)'></td>
+		<td id="box2" id="box" onclick='game(this)'></td>
+		<td id="box3" id="box" onclick='game(this)'></td>
+	</tr>
+	<tr>
+		<td id="box4" id="box" onclick='game(this)'></td>
+		<td id="box5" id="box" onclick='game(this)'></td>
+		<td id="box6" id="box" onclick='game(this)'></td>
+	</tr>
+	<tr>
+		<td id="box7" id="box" onclick='game(this)'></td>
+		<td id="box8" id="box" onclick='game(this)'></td>
+		<td id="box9" id="box" onclick='game(this)'></td>
+	</tr>
+   </table>
+   <!--new game button -->
+   <center>
+		<button style="margin-top:20px;height:30px;width:100px;" onclick="reStart()">New game</button>
+   </center>
+<script>
+var res;
+var gameVar = true;
+function start(option){
+	res=option.value;     //get the value(X or O) from the user
+	document.getElementById('msg').innerHTML = "You pick " + res;
+}
+function game(td){
+	if(gameVar == true) {
+		if(td.innerText =='X' || td.innerText =='O'){       //if user clicks two or more times on the same data cell
+		msg.innerHTML = "Already filled,Use another square";
+		}
+		else {
+		$("td").css("background","#124c8e");
+			if(res == 'X'){
+				msg.innerHTML = "It's O turn";
+				td.innerText = 'X';
+				res ='O';
+				winnerX();
+			}
+			else{
+				msg.innerHTML = "It's X turn";
+				td.innerText = 'O';
+				res='X';
+				winnerO();
+			}
+		}
+		}	
+}
+function winnerX(){
+	if((box1.innerText =='X' && box2.innerText =='X' && box3.innerText =='X')||(box1.innerText =='X' && box4.innerText == 'X' && box7.innerText == 'X')||(box7.innerText =='X' && box8.innerText =='X' && box9.innerText =='X')||(box3.innerText =='X' && box6.innerText =='X' && box9.innerText =='X')||(box1.innerText =='X' && box5.innerText =='X' && box9.innerText =='X')||(box3.innerText =='X' && box5.innerText =='X' && box7.innerText =='X')||(box4.innerText =='X' && box5.innerText =='X' && box6.innerText =='X')|| (box2.innerText =='X' && box5.innerText =='X' && box8.innerText =='X') ){
+	
+		alert("Hurray!! Player X Won...");
+		reset();
+		msg.innerHTML = "Play one more time?...<br> Tap 'New game'button";
+	}
+}
+function winnerO(){
+	if((box1.innerText =='O' && box2.innerText =='O' && box3.innerText =='O')||(box1.innerText =='O' && box4.innerText == 'O' && box7.innerText == 'O')||(box7.innerText =='O' && box8.innerText =='O' && box9.innerText =='O')||(box3.innerText =='O' && box6.innerText =='O' && box9.innerText =='O')||(box1.innerText =='O' && box5.innerText =='O' && box9.innerText =='O')||(box3.innerText =='O' && box5.innerText =='O' && box7.innerText =='O')||(box4.innerText =='O' && box5.innerText =='O' && box6.innerText =='O')|| (box2.innerText =='O' && box5.innerText =='O' && box8.innerText =='O') ){
+
+		alert("Hurray!! Player O Won...");
+		reset();
+		msg.innerHTML = "Play one  more time...Tap 'New game'button";
+	}
+		
+}
+function reset(){
+	gameVar=false;
+	alert("Game Over");
+}
+function reStart(){
+	$("td").empty();
+	gameVar =true;
+	msg.innerHTML ="Choose your favour 'X' or 'O'";
+}
+</script>
+</body>
+</html>
+  
